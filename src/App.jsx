@@ -27,7 +27,6 @@ const router = createBrowserRouter([
 export default function App(){
     return(
     <main>
-      <p>i am main in App</p>
       <RouterProvider router={router} />
     </main>
     )

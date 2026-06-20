@@ -1,10 +1,28 @@
 import { Link } from "react-router";
 import { useEffect , useState} from "react";
-function Image(){
-  
-  
+import './Shop.css'
+function Image({productImages}){
+   console.log("productImages are ",productImages);
   return(
-    <p>i am image</p>
+    <>
+    { productImages.map((data) => (
+    <div className="image">
+      <img src={data.image} alt="" />
+
+      <div className="addcart">
+          <p className="des">{data.description}</p>
+         <div className="cart">
+          <div className="quantity">
+              <button>minus</button>
+              <p>0</p>
+              <button>plus</button>
+          </div>
+          <button>Add to Cart</button>
+        </div>
+      </div>
+
+    </div>))}
+  </>
   )
 }
 
@@ -16,7 +34,7 @@ function Image(){
 
 
 export default function Shop(){
-  const [productData , setproductData] = useState([]);
+  const [productImages , setproductImages] = useState([]);
     // extract data from the api
     useEffect(()=>{
     async function getData(){
@@ -26,17 +44,16 @@ export default function Shop(){
       console.log(data.length);
       let newdata=[]
       for(let i =0; i < data.length ; i++){
-          newdata.push(data[i].image);
+          newdata.push(data[i]);
         console.log(data[i])
       }
       console.log("newdata is ",newdata)
-      setproductData(newdata);
+      setproductImages(newdata);
     }
     getData();
   },[])
     return(
     <>
-      <p>i am shop</p>
       <header>
         <h1>Shopping</h1>
         <ul>
@@ -46,7 +63,7 @@ export default function Shop(){
         </ul>
       </header>
       <div className="shop">
-        <Image />
+        <Image productImages={productImages} />
       </div>
 
     </>

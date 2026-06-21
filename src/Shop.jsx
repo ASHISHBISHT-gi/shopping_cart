@@ -1,6 +1,9 @@
 import { Link } from "react-router";
 import { useEffect , useState} from "react";
 import './Shop.css'
+
+
+
 function Image({productImages}){
    console.log("productImages are ",productImages);
   return(
@@ -25,13 +28,6 @@ function Image({productImages}){
   </>
   )
 }
-
-
-
-
-
-
-
 
 export default function Shop(){
   const [productImages , setproductImages] = useState([]);

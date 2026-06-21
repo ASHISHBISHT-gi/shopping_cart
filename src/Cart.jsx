@@ -1,9 +1,8 @@
 import { Link } from "react-router";
-
+import "./Cart.css"
 export default function Cart(){
   return(
     <> 
-      <p>i am cart</p>
       <header>
         <h1>Shopping</h1>
         <ul>
@@ -12,6 +11,9 @@ export default function Cart(){
           <li><Link to="/cart">Cart</Link></li>
         </ul>
       </header>
+      <div className="cart">
+
+      </div>
     </>
   )
 }

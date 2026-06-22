@@ -1,15 +1,16 @@
 import { Link } from "react-router";
 import { useEffect , useState} from "react";
-import './Shop.css'
+import { useOutletContext } from "react-router";
+import './Shop.css';
 
 
 
-function Image({productImages}){
+function Image({productImages , cartData}){
    console.log("productImages are ",productImages);
   return(
     <>
     { productImages.map((data) => (
-    <div className="image">
+    <div className="image" key={data.title.split(' ').slice(-3)[0] + data.id}>
       <img src={data.image} alt="" />
 
       <div className="addcart">
@@ -17,7 +18,7 @@ function Image({productImages}){
          <div className="cart">
           <div className="quantity">
               <button>minus</button>
-              <p>0</p>
+ {!(data.title.split(' ').slice(-3)[0] in cartData) ? <p>0</p> : <p>cartData.id.quantity</p>}
               <button>plus</button>
           </div>
           <button>Add to Cart</button>
@@ -31,6 +32,7 @@ function Image({productImages}){
 
 export default function Shop(){
   const [productImages , setproductImages] = useState([]);
+  const {cartData} = useOutletContext()
     // extract data from the api
     useEffect(()=>{
     async function getData(){
@@ -59,7 +61,7 @@ export default function Shop(){
         </ul>
       </header>
       <div className="shop">
-        <Image productImages={productImages} />
+        <Image productImages={productImages} cartData={cartData} />
       </div>
 
     </>

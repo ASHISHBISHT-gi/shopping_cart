@@ -12,7 +12,7 @@ const router = createBrowserRouter([
     {index: true, element: <Home />},
     {path: "shop", element: <Shop />},
     {path: "cart", element: <Cart />},
-    ],
+   ],
   },
 ]);
 
@@ -24,16 +24,28 @@ function Appcanvas(){
     id: "",
   }
   const [cartData, setCartdata] = useState({});
-  const cartAdd = (superkey,quantity,image)=>{
+  // add feature 
+  const cartAdd = (superkey)=>{
+    console.log("i ran");
     if(!(superkey in cartData)){
-        setCartdata({...cartData,superkey:{...userData,img:image,quantity:quantity+1,total}})
+        console.log("if")
+        setCartdata({...cartData,[superkey]:{quantity:1}})
     }else{
-      
-} 
+        setCartdata({...cartData,[superkey]:{...cartData[superkey],quantity: cartData[superkey].quantity+1}}) 
+    } 
   }
+  // subtract feature
+  const cartSub =(superkey)=>{
+         if((superkey in cartData) && cartData[superkey].quantity != 0){
+              setCartdata({...cartData,[superkey]:{...cartData[superkey],quantity:cartData[superkey].quantity-1}})
+    }
+  }
+
+  
+  
   return(
   <main>
-    <Outlet context={{cartData}} />
+    <Outlet context={{cartData , cartAdd ,cartSub}} />
   </main>
   )
 }

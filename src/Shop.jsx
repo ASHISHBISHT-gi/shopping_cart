@@ -5,7 +5,7 @@ import './Shop.css';
 
 
 
-function Image({productImages , cartData , cartAdd , cartSub}){
+function Image({productImages , cartData , cartAdd , cartSub , cartSubmit}){
    console.log("productImages are ",productImages);
   return(
     <>
@@ -21,7 +21,7 @@ function Image({productImages , cartData , cartAdd , cartSub}){
  {!(data.title.split(' ').slice(-3)[0] in cartData) ? <p>0</p> : <p>{cartData[data.title.split(' ').slice(-3)[0]].quantity}</p>}
               <button onClick={()=>cartAdd(data.title.split(' ').slice(-3)[0])}>plus</button>
           </div>
-          <button>Add to Cart</button>
+          <button onClick={()=>(cartSubmit((data.title.split(' ').slice(-3)[0]),data.image,data.price))}>Add to Cart</button>
         </div>
       </div>
 
@@ -33,7 +33,7 @@ function Image({productImages , cartData , cartAdd , cartSub}){
 export default function Shop(){
   const [productImages , setproductImages] = useState([]);
   // outlet data
-  const {cartData , cartAdd , cartSub} = useOutletContext()
+  const {cartData , cartAdd , cartSub , cartSubmit} = useOutletContext()
     // extract data from the api
     useEffect(()=>{
     async function getData(){
@@ -62,7 +62,7 @@ export default function Shop(){
         </ul>
       </header>
       <div className="shop">
-        <Image productImages={productImages} cartData={cartData} cartAdd={cartAdd} cartSub={cartSub} />
+        <Image productImages={productImages} cartData={cartData} cartSubmit={cartSubmit} cartAdd={cartAdd} cartSub={cartSub} />
       </div>
 
     </>

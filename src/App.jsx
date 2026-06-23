@@ -40,12 +40,19 @@ function Appcanvas(){
               setCartdata({...cartData,[superkey]:{...cartData[superkey],quantity:cartData[superkey].quantity-1}})
     }
   }
+  // sumbit data
+  const cartSubmit = (superkey,pic,price)=>{
+      if(superkey in cartData){
+          let total_price = cartData[superkey].quantity * price;
+          setCartdata({...cartData,[superkey]:{...cartData[superkey],total:total_price,image:pic}})
+    }
+  }
 
   
   
   return(
   <main>
-    <Outlet context={{cartData , cartAdd ,cartSub}} />
+    <Outlet context={{cartData , cartAdd , cartSub , cartSubmit }} />
   </main>
   )
 }

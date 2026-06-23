@@ -1,17 +1,24 @@
 import { Link } from "react-router";
+import { useOutletContext } from "react-router";
 import "./Cart.css"
 
 // Cartitems
 function CartItems(){
+  // outlet data
+  const {cartData , cartAdd , cartSub} = useOutletContext();
+  const keysdata=Object.keys(cartData);
   return(
-  <div>
-   <img src="" alt="" />
-   <div>
-    <h1>Total: $<span></span></h1>
+    <>
+    {
+    keysdata.map((keys)=>(
+  <div className="cartitems" key={keys}>
+   <img src={cartData[keys].image} alt="" />
+   <div id="cartinfo">
+    <h1>Total: $<span>{cartData[keys].total}</span></h1>
     <div>
       <div>
       <img src="" alt="minus" />
-      <h2>0</h2>
+      <h2>{cartData[keys].quantity}</h2>
       <img src="" alt="plus" />
       </div>
       <img src="" alt="delete" />
@@ -20,11 +27,14 @@ function CartItems(){
 
    </div>
   </div>
+  ))
+  }
+  </>
   )
 }
 
 export default function Cart(){
-  return(
+return(
     <> 
       <header>
         <h1>Shopping</h1>
@@ -34,8 +44,8 @@ export default function Cart(){
           <li><Link to="/cart">Cart</Link></li>
         </ul>
       </header>
-      <div className="cart">
-      
+      <div className="cartbox">
+      <CartItems />
       </div>
     </>
   )

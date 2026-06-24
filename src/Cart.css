@@ -1,16 +1,19 @@
 .cartbox{
-  min-height: 90vh;
-  background-color:green;
-  display:flex;
-  flex-wrap:wrap;
-  box-sizing:border-box;
-  padding: 0 3%;
-  row-gap:3%;
-  column-gap:6%;
+   display:grid;
+   grid-template-columns: repeat(auto-fill,minmax(300px,1fr));
+  /* grid-auto-rows: minmax(150px, auto); */
+   grid-template-rows: repeat(2, 1fr);
+   background-color:green;
+   box-sizing:border-box;
+   min-height:90vh;
+   row-gap:1rem;
+   padding:0 3%;
+   column-gap:1rem;
 }
 .cartitems{
   border:1px solid red;
-  width:20%;
+  background-color:red;
+  width:100%;
   aspect-ratio:1;
   align-self:flex-start;
   position:relative;
@@ -26,4 +29,12 @@
   top:0;
   display:none;
 }
+.cartitems:hover > img{
+  display:none;
+}
+
+.cartitems:hover #cartinfo{
+  display:flex;
+}
+
 

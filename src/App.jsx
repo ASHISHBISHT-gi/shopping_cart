@@ -27,6 +27,7 @@ function Appcanvas(){
   // add feature 
   const cartAdd = (superkey)=>{
     console.log("i ran");
+    console.log("superkey is ",superkey);
     if(!(superkey in cartData)){
         console.log("if")
         setCartdata({...cartData,[superkey]:{quantity:1}})
@@ -36,6 +37,7 @@ function Appcanvas(){
   }
   // subtract feature
   const cartSub =(superkey)=>{
+         console.log("superkey",superkey);
          if((superkey in cartData) && cartData[superkey].quantity != 0){
               setCartdata({...cartData,[superkey]:{...cartData[superkey],quantity:cartData[superkey].quantity-1}})
     }

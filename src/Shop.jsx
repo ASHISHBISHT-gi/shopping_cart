@@ -17,11 +17,11 @@ function Image({productImages , cartData , cartAdd , cartSub , cartSubmit}){
           <p className="des">{data.description}</p>
          <div className="cart">
           <div className="quantity">
-              <button onClick={()=>cartSub(data.title.split(' ').slice(-3)[0])}>minus</button>
- {!(data.title.split(' ').slice(-3)[0] in cartData) ? <p>0</p> : <p>{cartData[data.title.split(' ').slice(-3)[0]].quantity}</p>}
-              <button onClick={()=>cartAdd(data.title.split(' ').slice(-3)[0])}>plus</button>
+              <button onClick={()=>cartSub((data.title.split(' ').slice(-3)[0] + data.id))}>minus</button>
+ {!((data.title.split(' ').slice(-3)[0] + data.id) in cartData) ? <p>0</p> : <p>{cartData[(data.title.split(' ').slice(-3)[0] + data.id)].quantity}</p>}
+              <button onClick={()=>cartAdd((data.title.split(' ').slice(-3)[0] + data.id))}>plus</button>
           </div>
-          <button onClick={()=>(cartSubmit((data.title.split(' ').slice(-3)[0]),data.image,data.price))}>Add to Cart</button>
+          <button onClick={()=>(cartSubmit((data.title.split(' ').slice(-3)[0] + data.id),data.image,data.price))}>Add to Cart</button>
         </div>
       </div>
 

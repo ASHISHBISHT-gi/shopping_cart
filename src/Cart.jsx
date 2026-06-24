@@ -1,12 +1,18 @@
 import { Link } from "react-router";
 import { useOutletContext } from "react-router";
 import "./Cart.css"
-
+import  minus from "./assets/icon-minus.svg";
+import plus from "./assets/icon-plus.svg";
+import cancel from "./assets/icon-delete.svg";
 // Cartitems
 function CartItems(){
   // outlet data
   const {cartData , cartAdd , cartSub} = useOutletContext();
   const keysdata=Object.keys(cartData);
+  // delete feature
+  const cartdelete=(superkey)=>{
+      console.log(superkey);
+  }
   return(
     <>
     {
@@ -17,11 +23,11 @@ function CartItems(){
     <h1>Total: $<span>{cartData[keys].total}</span></h1>
     <div>
       <div>
-      <img src="" alt="minus" />
+      <img src={minus} alt="minus" />
       <h2>{cartData[keys].quantity}</h2>
-      <img src="" alt="plus" />
+      <img src={plus} alt="plus" />
       </div>
-      <img src="" alt="delete" />
+      <img src={cancel} alt="delete" onClick={()=>cartdelete(keys)} />
     </div>
     <button type="">Buy</button>
 

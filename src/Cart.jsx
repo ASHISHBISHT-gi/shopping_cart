@@ -19,9 +19,9 @@ function CartItems(){
     <h1>Total: $<span>{cartData[keys].total}</span></h1>
     <div>
       <div>
-      <img src={minus} alt="minus" />
+      <img src={minus} alt="minus" onClick={()=>cartSub(keys,"cart")} />
       <h2>{cartData[keys].quantity}</h2>
-      <img src={plus} alt="plus" />
+      <img src={plus} alt="plus" onClick={()=>cartAdd(keys)}/>
       </div>
       <img src={cancel} alt="delete" onClick={()=>cartDelete(keys)} />
     </div>

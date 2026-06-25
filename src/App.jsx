@@ -36,10 +36,13 @@ function Appcanvas(){
     } 
   }
   // subtract feature
-  const cartSub =(superkey)=>{
+  const cartSub =(superkey, page="shop")=>{
          console.log("superkey",superkey);
          if((superkey in cartData) && cartData[superkey].quantity != 0){
               setCartdata({...cartData,[superkey]:{...cartData[superkey],quantity:cartData[superkey].quantity-1}})
+        }
+        if((page=="cart") && cartData[superkey].quantity <= 1){
+          cartDelete(superkey);
     }
   }
   // sumbit data

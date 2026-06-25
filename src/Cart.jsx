@@ -7,12 +7,8 @@ import cancel from "./assets/icon-delete.svg";
 // Cartitems
 function CartItems(){
   // outlet data
-  const {cartData , cartAdd , cartSub} = useOutletContext();
+  const {cartData , cartAdd , cartSub , cartDelete} = useOutletContext();
   const keysdata=Object.keys(cartData);
-  // delete feature
-  const cartdelete=(superkey)=>{
-      console.log(superkey);
-  }
   return(
     <>
     {
@@ -27,7 +23,7 @@ function CartItems(){
       <h2>{cartData[keys].quantity}</h2>
       <img src={plus} alt="plus" />
       </div>
-      <img src={cancel} alt="delete" onClick={()=>cartdelete(keys)} />
+      <img src={cancel} alt="delete" onClick={()=>cartDelete(keys)} />
     </div>
     <button type="">Buy</button>
 

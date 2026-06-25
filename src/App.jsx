@@ -50,11 +50,17 @@ function Appcanvas(){
     }
   }
 
+  // delete data
+  const cartDelete=(superkey)=>{
+        let tempobj = {...cartData};
+        delete tempobj[superkey];
+        setCartdata({...tempobj});
+  }
   
   
   return(
   <main>
-    <Outlet context={{cartData , cartAdd , cartSub , cartSubmit }} />
+    <Outlet context={{cartData , cartAdd , cartSub , cartSubmit , cartDelete}} />
   </main>
   )
 }

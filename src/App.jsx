@@ -1,4 +1,4 @@
-import { createBrowserRouter , Outlet , RouterProvider } from 'react-router';
+import { createBrowserRouter , Outlet , RouterProvider , Link } from 'react-router';
 import Shop from './Shop.jsx';
 import Cart from './Cart.jsx';
 import Home from './Home.jsx';
@@ -8,6 +8,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Appcanvas />,
+    errorElement: <ErrorPage />,
     children:[
     {index: true, element: <Home />},
     {path: "shop", element: <Shop />},
@@ -15,6 +16,21 @@ const router = createBrowserRouter([
    ],
   },
 ]);
+
+// temporary feature
+function ErrorPage(){
+    return(
+    <div className="error">
+    <h1>Page Not Found</h1>
+    <Link to="/">Go Back</Link>
+    </div> 
+    )
+}
+function ErrorShop(){
+  return(
+    <div>i am errorShop <Link to="/">go back</Link> </div>
+  )
+}
 
 function Appcanvas(){
   const userData={
